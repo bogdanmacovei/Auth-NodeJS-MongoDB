@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+</head>
+<body>
+	<h1> Log In </h1>
+
+	<div class="status"></div>
+
+	<br>
+
+	<fieldset>
+		<input type = "email" id = "email" placeholder = "Email address">
+		<br>
+		<input type = "password" id = "password" placeholder = "Password">
+		<br><br>
+		<button id = "login"> Log in! </button>
+	</fieldset>
+
+<script>
+$("#login").on('click', function() {
+	var preparedJSON = {
+        email : $("#email").val() ,
+        password : $("#password").val() ,
+    }
+     
+    // login account
+    var loggedIn = false;
+    $.post( "/loggingIn", preparedJSON, function (res) {
+    	$(".status").html (res);
+    }); 
+
+    setTimeout (function () {
+    	window.location = '/';
+    }, 1000);
+    
+   
+});
+</script>
+</body>
+</html>
