@@ -24,3 +24,16 @@ module.exports.passwordRegex = function (password) {
   	}
   	return ('ok');
 }
+
+module.exports.teamRegex = function (team) {
+	if (team.length < 6) {
+		return ('Numele echipei este prea scurt');
+	}
+	else if (team.length > 20) {
+		return ('Numele echipei este prea lung');
+	}
+	else if (team.search(/[^a-zA-Z0-9\!\@\#\$\*\_\+\.]/) != -1) {
+    	return("In parola puteti folosi litere, numere si urmatoarele simboluri:\"!, @, #, $, *, ., +, _\". ");
+  	}
+  	return ('ok');
+}
