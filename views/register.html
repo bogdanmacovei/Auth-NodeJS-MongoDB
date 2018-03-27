@@ -42,9 +42,14 @@
 				$('.status').html (res);
 			});
 
-			setTimeout (function () {
+			var a = setTimeout (function () {
 				window.location.href = '/login';
+				if ($('#sign-up').val() != 'Account created!') {
+					// intra corect aici
+					window.location.href = '/register';
+				}
 			}, 2000);
+
 		});
 	</script>
 </body>
