@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register Page</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+</head>
+<body>
+	<h1> Create account </h1>
+
+	<div class="status"></div>
+	<br>
+
+	<fieldset>
+		<input type = "text" id = "firstname" placeholder = "First Name">
+		<br>
+		<input type = "text" id = "lastname" placeholder = "Last Name">
+		<br>
+		<input type = "text" id = "username" placeholder = "User Name">
+		<br>
+		<input type = "email" id = "email" placeholder = "Email address">
+		<br>
+		<input type = "password" id = "password" placeholder = "Password">
+		<br>
+		<input type = "password" id = "passwordverif" placeholder = "Confirme password">
+
+		<br><br>
+		<button id = "sign_up"> Sign up! </button>
+	</fieldset>
+
+	<script>
+		$('#sign_up').on ('click', function () {
+			var preparedJSON = {
+				firstname: $('#firstname').val(),
+				lastname: $('#lastname').val(),
+				username: $('#username').val(),
+				password: $('#password').val(),
+				passwordVerif: $('#passwordverif').val(),
+				email: $('#email').val()
+			};
+
+			$.post ('/creating', preparedJSON, function (res) {
+				$('.status').html (res);
+			});
+
+			var a = setTimeout (function () {
+				window.location.href = '/login';
+				if ($('#sign-up').val() != 'Account created!') {
+					// intra corect aici
+					window.location.href = '/register';
+				}
+			}, 2000);
+
+		});
+	</script>
+</body>
+</html>
